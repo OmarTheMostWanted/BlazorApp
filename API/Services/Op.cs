@@ -1,6 +1,11 @@
 ﻿namespace API.Services;
 
-public enum Op
+public enum BinaryOp
 {
-    ADD,SUB,MUL,DIV,POW,FAC
+    ADD,SUB,MUL,DIV,POW,FAK,
+}
+
+public enum UnaryOp
+{
+    REV,SQRT,FAC
 }
