@@ -1,0 +1,31 @@
+body {
+    background: lightblue;
+    font-family: arial;
+}
+
+ h1 {
+     color: red;
+     text-align :center;
+ }
+
+ p {
+     color: white;
+     background: rgb(97, 93, 93);
+     padding: 2% ;
+ }
+
+.specialP {
+     color: limegreen;
+     background: black;
+ }
+
+ .home {
+     color: rgb(1, 98, 9);
+ }
+
+
+
+ #navigation {
+     background-color: aqua;
+     background-size: contain;
+}
