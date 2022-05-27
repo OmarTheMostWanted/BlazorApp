@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<Button OnClick=@(() => Console.WriteLine("I was clicked"))>
+    Click me!    
+</Button>
+
+<TextBox OnInput=changetext> </TextBox>
+
+
+<TextBox @bind-input=_boundInput> </TextBox>
+
+
+@code
+{
+    private String _input;
+    private string _boundInput;
+
+    public void changetext(ChangeEventArgs args)
+    {
+        _input = args.Value.ToString();
+    }
+}

@@ -1,0 +1,19 @@
+﻿<h3>TextBox</h3>
+
+<input @onchange="OnInputChanged" value=@input>
+
+
+@code {
+
+    [Parameter] public string input { get; set; }
+    [Parameter] public EventCallback<ChangeEventArgs> OnInput { get; init; }
+
+    private async Task OnInputChanged(ChangeEventArgs args)
+    {
+        input = args.Value.ToString();
+        await inputChanged.InvokeAsync(input);
+    }
+    
+    [Parameter] public EventCallback<String> inputChanged { get; set; }
+
+}

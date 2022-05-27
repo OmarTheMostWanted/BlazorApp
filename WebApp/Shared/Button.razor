@@ -1,0 +1,9 @@
+﻿<button @onclick=@OnClick>@ChildContent</button>
+
+@code {
+
+    [Parameter] public RenderFragment ChildContent { get; init; }
+
+    [Parameter] public EventCallback OnClick { get; init; }
+    
+}
