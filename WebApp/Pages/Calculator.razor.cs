@@ -8,7 +8,9 @@ public partial class Calculator
     [Parameter] public double? Result { get; set; }
     [Parameter] public EventCallback<double?> ResultChanged { get; set; }
 
-    private string _input = "default";
+    [Parameter] public string? InputC { get; set; } 
+    [Parameter] public EventCallback<string?> InputCChanged { get; set; }
+
 
     [Parameter] public string? X { get; set; }
     [Parameter] public string? Y { get; set; }
@@ -41,7 +43,7 @@ public partial class Calculator
             if (await Client.SetX(x))
             {
                 X += arg;
-                _input = X;
+                InputC = X;
             }
         }
         else if (_op is not null && _settingY)
@@ -61,7 +63,7 @@ public partial class Calculator
             if (await Client.SetY(y))
             {
                 Y += arg;
-                _input += _op + Y;
+                InputC += _op + Y;
             }
         }
     }
@@ -78,9 +80,18 @@ public partial class Calculator
         _settingX = false;
         _settingY = true;
 
-        _input = X + _op;
+        InputC = X + _op;
     }
 
+    private async void Res()
+    {
+        if (X is not null && Y is not null && _op is not null)
+        {
+            var res = await Client.Calculate();
+            Result = res;
+        }
+        
+    }
 
     private void Clear()
     {
@@ -89,6 +100,7 @@ public partial class Calculator
         _op = null;
         _settingX = true;
         _settingY = false;
-        _input = "";
+        InputC = "";
+        Result = 0;
     }
 }

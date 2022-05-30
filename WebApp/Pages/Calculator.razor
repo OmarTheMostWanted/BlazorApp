@@ -7,8 +7,8 @@
 
 
 <p>
-    <InputDisplay @bind-Input="@_input"/>
-    <ResultDisplay/>
+    <InputDisplay @bind-Input="@InputC"/>
+    <ResultDisplay @bind-Result="@Result"/>
 </p>
 
 <div>
@@ -22,28 +22,19 @@
     <NumberButton Value="7" SetValue="HandleClickNumber"></NumberButton>
     <NumberButton Value="8" SetValue="HandleClickNumber"></NumberButton>
     <NumberButton Value="9" SetValue="HandleClickNumber"></NumberButton>
-    
-    <OparationButton Op="+" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="-" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="*" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="d" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="^" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="R" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="!" SetOp="HandleClickOp"></OparationButton>
-    <OparationButton Op="_" SetOp="HandleClickOp"></OparationButton>
-    
 
-    <button>+</button>
-    <button>-</button>
-    <button>/</button>
-    <button>*</button>
-    <button>FAK</button>
-    <button>!</button>
-    <button>Sqrt</button>
-    <button>Fac</button>
+    <OparationButton Text="+" Op="+" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="-" Op="-" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="*" Op="*" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="/" Op="d" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="Pow" Op="^" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="Sqrt" Op="R" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="Fac" Op="!" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="Revert" Op="_" SetOp="HandleClickOp"></OparationButton>
+    <OparationButton Text="Fak" Op="F" SetOp="HandleClickOp"></OparationButton>
 
 
-    <button>=</button>
+    <button @onclick="Res">=</button>
     <button @onclick="Clear">Clear</button>
 
     <style>

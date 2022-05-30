@@ -1,10 +1,14 @@
-﻿<button @onclick="@(async _ => await SetOp.InvokeAsync(Op))" >@Op</button>
+﻿<button @onclick="@(async _ => await SetOp.InvokeAsync(Op))">@Text</button>
 
 @code {
-    
+
     [Parameter]
-    public string Op { get; init; } = default;
-    
+    public string Text { init; get; }
+
+    [Parameter]
+    public string Op { get; init; }
+
     [Parameter]
     public EventCallback<string> SetOp { get; init; }
+
 }
