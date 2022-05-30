@@ -9,7 +9,7 @@ public class Client
     public Client(HttpClient client)
     {
         _client = client;
-        _client.BaseAddress = new Uri("https://localhost:7252/");
+        _client.BaseAddress = new Uri("https://localhost:7121/");
     }
 
     public async Task<bool> SetX(double x)
