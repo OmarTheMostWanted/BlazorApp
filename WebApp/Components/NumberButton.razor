@@ -3,9 +3,9 @@
 @code {
 
     [Parameter]
-    public char Value { get; init; } = default;
+    public string Value { get; init; } = default;
     
     [Parameter]
-    public EventCallback<char> SetValue { get; init; }
+    public EventCallback<string> SetValue { get; init; }
 
 }

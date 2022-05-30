@@ -13,22 +13,23 @@ public partial class Calculator
     [Parameter] public string? X { get; set; }
     [Parameter] public string? Y { get; set; }
 
+    [Inject] private Client Client { get; init; } = default;
+
 
     private bool _settingX = true;
     private bool _settingY;
 
+    private string? _op = null;
 
-    private async void HandleClickNumber(char arg)
+
+    private async void HandleClickNumber(string arg)
     {
         if (_settingX)
         {
-            X += arg;
-
+            double x = 0;
             try
             {
-                double x = Convert.ToDouble(X);
-                
-                Console.WriteLine($"X set to {X}");
+                x = Convert.ToDouble(X + arg);
             }
             catch (FormatException formatException)
             {
@@ -36,19 +37,48 @@ public partial class Calculator
                 _settingX = true;
                 _settingY = false;
             }
-        }
-        else if (_settingY)
-        {
-            Y += arg;
-            Console.WriteLine($"Y set to {Y}");
-        }
 
-        if (X is null | Y is null) return;
-        _input = X + "()" + Y;
+            if (await Client.SetX(x))
+            {
+                X += arg;
+                _input = X;
+            }
+        }
+        else if (_op is not null && _settingY)
+        {
+            double y = 0;
+            try
+            {
+                y = Convert.ToDouble(Y + arg);
+            }
+            catch (FormatException formatException)
+            {
+                Y = "";
+                _settingX = false;
+                _settingY = true;
+            }
+
+            if (await Client.SetY(y))
+            {
+                Y += arg;
+                _input += _op + Y;
+            }
+        }
     }
 
-    private void HandleClickOp(char arg)
+    private async void HandleClickOp(string arg)
     {
+        if (X is null) return;
+
+        if (arg.Length != 1) return;
+
+        if (!await Client.SetOp(Convert.ToChar(arg))) return;
+
+        _op = arg;
+        _settingX = false;
+        _settingY = true;
+
+        _input = X + _op;
     }
 
 
@@ -56,10 +86,9 @@ public partial class Calculator
     {
         X = null;
         Y = null;
-
+        _op = null;
         _settingX = true;
         _settingY = false;
-
-        Console.WriteLine("Input Cleared");
+        _input = "";
     }
 }

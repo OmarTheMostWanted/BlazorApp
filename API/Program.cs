@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddLogging();
+
 builder.Services.AddSingleton<IOperationProvider, OperationProvider>();
 builder.Services.AddSingleton<ICalculator, Calculator>();
 

@@ -3,8 +3,8 @@
 @code {
     
     [Parameter]
-    public char Op { get; init; } = default;
+    public string Op { get; init; } = default;
     
     [Parameter]
-    public EventCallback<char> SetOp { get; init; }
+    public EventCallback<string> SetOp { get; init; }
 }
