@@ -1,0 +1,10 @@
+﻿<button @onclick="@(async _ => await SetOp.InvokeAsync(Op))" >@Op</button>
+
+@code {
+    
+    [Parameter]
+    public char Op { get; init; } = default;
+    
+    [Parameter]
+    public EventCallback<char> SetOp { get; init; }
+}

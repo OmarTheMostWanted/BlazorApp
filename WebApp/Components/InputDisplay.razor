@@ -1,0 +1,22 @@
+﻿<span>
+    <div Id="screen">@Input</div>
+
+    <style>
+       #screen {
+       background-color: black; 
+       color: white;     
+       padding: 10px;
+       }
+   </style>
+</span>
+
+
+@code {
+
+    [Parameter]
+    public string? Input { get; set; } = "0";
+
+    [Parameter]
+    public EventCallback<string?> InputChanged { get; set; }
+
+}

@@ -1,0 +1,11 @@
+﻿<button @onclick="@(async _ => await SetValue.InvokeAsync(Value))" >@Value</button>
+
+@code {
+
+    [Parameter]
+    public char Value { get; init; } = default;
+    
+    [Parameter]
+    public EventCallback<char> SetValue { get; init; }
+
+}

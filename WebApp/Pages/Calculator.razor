@@ -1,0 +1,52 @@
+﻿@page "/calculator"
+@using WebApp.Components
+
+<PageTitle>Calculator</PageTitle>
+
+<body>
+
+
+<p>
+    <InputDisplay @bind-Input="@_input"/>
+    <ResultDisplay/>
+</p>
+
+<div>
+    <NumberButton Value="0" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="1" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="2" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="3" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="4" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="5" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="6" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="7" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="8" SetValue="HandleClickNumber"></NumberButton>
+    <NumberButton Value="9" SetValue="HandleClickNumber"></NumberButton>
+
+    <button>+</button>
+    <button>-</button>
+    <button>/</button>
+    <button>*</button>
+    <button>FAK</button>
+    <button>!</button>
+    <button>Sqrt</button>
+    <button>Fac</button>
+
+
+    <button>=</button>
+    <button @onclick="Clear">Clear</button>
+
+    <style>
+        button {
+            background: gray;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0%;
+            padding: 1%;
+        }
+    </style>
+
+
+</div>
+
+</body>

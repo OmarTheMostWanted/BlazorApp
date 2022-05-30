@@ -2,11 +2,14 @@
 
 namespace API.Services;
 
-public delegate double Operation(double x, double y);
+public delegate double BinaryOperation(double x, double y);
+
+public delegate double UnaryOperation(double x);
 
 public interface IOperationProvider
 {
-    Operation GetOp(BinaryOp binaryOp);
+    BinaryOperation GetOp(BinaryOp binaryOp);
+    UnaryOperation GetOp(UnaryOp unaryOp);
 }
 
 public sealed class OperationProvider : IOperationProvider
@@ -21,7 +24,7 @@ public sealed class OperationProvider : IOperationProvider
     }
 
 
-    public Operation GetOp(BinaryOp binaryOp) => binaryOp switch
+    public BinaryOperation GetOp(BinaryOp binaryOp) => binaryOp switch
     {
         BinaryOp.ADD => Add,
         BinaryOp.DIV => (x, y) => x / y,
@@ -30,5 +33,19 @@ public sealed class OperationProvider : IOperationProvider
         BinaryOp.POW => Math.Pow,
         BinaryOp.FAK => Fak,
         _ => throw new ArgumentOutOfRangeException(nameof(binaryOp), binaryOp, "Wrong operator exception.")
+    };
+
+    private static double Fac(double x)
+    {
+        if (x <= 0) return 1;
+        return x * Fac(x - 1);
+    }
+
+    public UnaryOperation GetOp(UnaryOp unaryOp) => unaryOp switch
+    {
+        UnaryOp.FAC => Fac,
+        UnaryOp.REV => x => -1 * x,
+        UnaryOp.SQRT => Math.Sqrt,
+        _ => throw new ArgumentOutOfRangeException(nameof(unaryOp), unaryOp, "Wrong operator exception.")
     };
 }
